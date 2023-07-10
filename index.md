@@ -79,15 +79,15 @@ def closeness_vitality(G, node=None, weight=None, wiener_index=None):
 ```
 
 Tournament
-- This one was quite interesting. There were four places to put parallel implementation as marked by TODOs.
+- This implementation was quite interesting! I found four areas where I could potentially apply parallelism, as indicated by the TODOs. After some experimentation, I discovered that breaking the tasks into chunks and using process-based parallelism yielded the best results in terms of performance.
 
 - I messed around a bit and again found that breaking up into chunks and using process-based parallelism was faster. 
 
 - I didn't actually parallelize is_closed itself...I found that the run time of is_closed was so short it didn't justify the overhead of either creating threads or allocating to processors. I thought about it like this: assuming p is the processing time for all tasks, for parallel processing to be faster than sequential we need p/num_cores + o << p, where o is overhead from joblib. we need o << ~p, which was not occuring with is_closed
 
--After experiments I did find it was best to parallelize two_neighborhood's application on vertices and is_closed's application on vertices. 
+- After experiments I did find it was best to parallelize two_neighborhood's application on vertices and is_closed's application on vertices. 
 
--I didn't parallelize the two_neighborhood function itself for the same reasons as is_closed
+- I didn't parallelize the two_neighborhood function itself for similar reasons as is_closed. Instead, I focused on parallelizing the application of the function, which resulted in better overall performance.
 
 - Was forced to use process-based parallelism by joblib for is_strongly_connected (not an issue though), just used chunking + process-based parallelism.
 
@@ -139,13 +139,13 @@ def tournament_is_strongly_connected(G):
     return all(results)
 ```
 
-** Next Steps **
+**Next Steps**
 
-Fix betweenness_centrality
-Clean up imports
-Find a cleaner way to test + organize
-Transition into nx-guides
-Maybe parallelize another function for fun
+- Fix betweenness_centrality
+- Clean up imports
+- Find a cleaner way to test + organize
+- Transition into nx-guides
+- Maybe parallelize another function for fun
 
 
 
