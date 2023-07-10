@@ -21,7 +21,7 @@ I having been spending A LOT of time on this. It makes me want to give some kudo
 
 Overall, I changed up the interface and added new ParallelGraph types, cloned the networkx tests to the repo to test my functions/got around the testing issue before, and added parallel implementations for closeness_vitality and tournament (a bit ahead of schedule). 
 
-To be able to implement functions without running into dispatch decorator issues, I switched to the version of network in PR 6688 and made nx_parallel work with that. I found that the PR marked all the functions I wanted to parallelize with the dispatch decorator, so there was no need to make my version of the PR. 
+To be able to implement functions without running into dispatch decorator issues, I switched to the version of network in PR 6688 and made nx_parallel work with that. I found that the PR marked all the functions I wanted to parallelize with the dispatch decorator, so there was no need to make my own version of the PR. 
 
 **Class Additions and Interface**
 
