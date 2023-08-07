@@ -11,7 +11,35 @@ author: ["Kavish Senthilkumar"]
 
 ---
 
+## BLOG POST 3: July 9th, 2023
 
+Time for another blog post. 
+
+At this point I have good news: I have essentially finished up all the work in my proposal! I've parallelized betweeness_centrality, vitality, tournament, and isolates. I've also completed the traversal notebook and made finishing touches to the contribution guide.
+
+In total, in the time since my blog post I've 1) been cleaning up the parallelized implementations and trying to use some shortcuts that were discussed by my mentors, 2) added the traversal notebook and edited the contribution guide, and 3) taking a look through a new PR in nx_parallel. In addition, I also parallelized efficiency_measures. 
+
+**Parallelization and new PR**
+
+I looked into using the __wrapped__ decorator but ran into some issues: it did not work for vitality and tournament...kept saying that certain functions were 'not implemented by parallel'. For consistency, I kept the functions the same. I made a small edit to betweenness because it no longer needs the convert helper. All this work is on PR #5 , the PR I have been working in thus far. 
+
+I looked through the code in the new PR by dPys (PR #7)  and feel the changes add value...it's a good step in the direction of a more expansive parallel backend and has good ideas for abstraction. It shortens a lot of function implementations with fundamental abstractions, and has good directory structure. I hope to build on it in the future as dPys makes more changes.
+
+
+**Traversal Notebook and Contribution Guide**
+
+I created a traversal notebook draft and sent it in to my previous improve consistency PR (#98). I aimed to not use static images and create all graphics/animations with networkx. I explained the foundations of BFS and DFS. I took a casual yet informative approach and explained all traversal functions (i.e. edge_bfs, predecessors, etc) in NetworkX. I made sure to adhere to our format guidelines throughout the notebook. I added to PR #98 because I wanted to build on top of my existing consistency changes from what Ross (one of my mentors) mentioned
+
+My goal was to make the notebook engaging and accessible to everyone, striking a balance between being informative and enjoyable to read. I am considering adding some more practical examples for an analysis. 
+
+I also added some finished touches to the format guidelines and contribution guide. 
+
+**Parallelization and efficiency_measures**
+
+I looked beyond my proposal to see what else I could add to. I decided to work on parallelizing more functions. I parallelized efficiency measures and added the corresponding tests.
+
+
+**Next Steps**
 
 
 ## BLOG POST 2: July 9th, 2023
