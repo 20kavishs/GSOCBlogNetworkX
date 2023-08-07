@@ -36,11 +36,12 @@ I also added some finished touches to the format guidelines and contribution gui
 
 **Parallelization and efficiency_measures**
 
-I looked beyond my proposal to see what else I could add to. I decided to work on parallelizing more functions. I parallelized efficiency measures and added the corresponding tests.
+I looked beyond my proposal to see what else I could add to. I decided to work on parallelizing more functions. I parallelized efficiency measures and added the corresponding tests. I parallelized efficiency_measures with a similar chunking and process-based parallelism approach I've used when chunking vertices into groups. This entailed creating a "subset" helper function and using joblib Parallel. 
 
 
 **Next Steps**
 
+Next, I will continue seeing what else I can add (I'm considering 1) updates to nx_parallel documentation and 2) parallelizing more functions). As I wrap up my contributions, I'll start working on my final submission deliverable for Google Summer of Code. It's been an incredible experience, and I'm grateful for the opportunity to contribute to this fantastic project.
 
 ## BLOG POST 2: July 9th, 2023
 At last it is time for another blog post. A good deal of new changes here. 
