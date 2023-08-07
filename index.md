@@ -17,7 +17,11 @@ Time for another blog post.
 
 At this point I have good news: I have essentially finished up all the work in my proposal! I've parallelized betweeness_centrality, vitality, tournament, and isolates. I've also completed the traversal notebook and made finishing touches to the contribution guide.
 
-In total, in the time since my blog post I've 1) been cleaning up the parallelized implementations and trying to use some shortcuts that were discussed by my mentors, 2) added the traversal notebook and edited the contribution guide, and 3) taking a look through a new PR in nx_parallel. In addition, I also parallelized efficiency_measures. 
+In total, in the time since my blog post:
+- I've been cleaning up the parallelized implementations and trying to use some shortcuts that were discussed by my mentors, 2)
+- I added the traversal notebook and edited the contribution guide
+- I've been taking a look through a new PR in nx_parallel
+- I decided to parallelize another function beyond my proposal and parallelized efficiency_measures. 
 
 **Parallelization and new PR**
 
@@ -30,13 +34,27 @@ I looked through the code in the new PR by dPys (PR #7)  and feel the changes ad
 
 I created a traversal notebook draft and sent it in to my previous improve consistency PR (#98). I aimed to not use static images and create all graphics/animations with networkx. I explained the foundations of BFS and DFS. I took a casual yet informative approach and explained all traversal functions (i.e. edge_bfs, predecessors, etc) in NetworkX. I made sure to adhere to our format guidelines throughout the notebook. I added to PR #98 because I wanted to build on top of my existing consistency changes from what Ross (one of my mentors) mentioned
 
-My goal was to make the notebook engaging and accessible to everyone, striking a balance between being informative and enjoyable to read. I am considering adding some more practical examples for an analysis. 
+My goal was to make the notebook engaging and accessible to everyone, striking a balance between being informative and enjoyable to read. I am considering adding some more practical examples for an analysis. Some of my animations were pretty cool!
 
 I also added some finished touches to the format guidelines and contribution guide. 
 
 **Parallelization and efficiency_measures**
 
-I looked beyond my proposal to see what else I could add to. I decided to work on parallelizing more functions. I parallelized efficiency measures and added the corresponding tests. I parallelized efficiency_measures with a similar chunking and process-based parallelism approach I've used when chunking vertices into groups. This entailed creating a "subset" helper function and using joblib Parallel. 
+I looked beyond my proposal to see what else I could add to. I decided to work on parallelizing more functions. I parallelized efficiency measures and added the corresponding tests. I parallelized efficiency_measures with a similar chunking and process-based parallelism approach I've used when chunking vertices into groups. This entailed creating a "subset" helper function and using joblib Parallel, the gist of which I have below. 
+
+```python
+    total_cores = cpu_count()
+    num_chunks = max(len(G.nodes) // total_cores, 1)
+    node_chunks = list(chunks(G.nodes, num_chunks))
+    efficiencies = Parallel(n_jobs=total_cores)(
+        delayed(local_efficiency_node_subset)(G, chunk) for chunk in node_chunks
+    )
+    return sum(efficiencies) / len(G)
+    
+
+def local_efficiency_node_subset(G, nodes):
+    return sum(global_efficiency(G.subgraph(G[v])) for v in nodes)
+```
 
 
 **Next Steps**
