@@ -11,7 +11,7 @@ author: ["Kavish Senthilkumar"]
 
 ---
 
-## BLOG POST 3: July 9th, 2023
+## BLOG POST 3: August 10th, 2023
 
 Time for another blog post. 
 
@@ -25,7 +25,7 @@ In total, in the time since my blog post:
 
 **Parallelization and new PR**
 
-I looked into using the __wrapped__ decorator but ran into some issues: it did not work for vitality and tournament...kept saying that certain functions were 'not implemented by parallel'. For consistency, I kept the functions the same. I made a small edit to betweenness because it no longer needs the convert helper. All this work is on PR #5 , the PR I have been working in thus far. 
+I looked into using the __wrapped__ decorator but ran into some issues: it did not work for vitality and tournament...kept saying that certain functions were 'not implemented by parallel'. For consistency, I kept the functions the same. I made a small edit to betweenness because it no longer needs the convert helper. All this work is on PR #2, the PR I have been working in thus far. 
 
 I looked through the code in the new PR by dPys (PR #7)  and feel the changes add value...it's a good step in the direction of a more expansive parallel backend and has good ideas for abstraction. It shortens a lot of function implementations with fundamental abstractions, and has good directory structure. I hope to build on it in the future as dPys makes more changes.
 
